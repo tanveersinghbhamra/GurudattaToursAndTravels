@@ -1,0 +1,5 @@
+# Gurudatta Tour's & Travels — robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://www.gurudattatoursandtravels.example/sitemap.xml
