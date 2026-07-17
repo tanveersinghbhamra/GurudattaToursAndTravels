@@ -548,7 +548,8 @@
             /* ---------- hero ---------- */
             .hero {
                 position: relative;
-                min-height: 100vh;
+                height: 100vh;
+                min-height: 560px;
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
@@ -558,9 +559,9 @@
                 position: absolute;
                 inset: 0;
                 z-index: 0;
-                background-image: url("https://images.unsplash.com/photo-1601918774946-25832a4be0d6?auto=format&fit=crop&w=2200&q=80");
+                background-image: url("https://images.unsplash.com/photo-1735567430450-6873cedc8e1d?auto=format&fit=crop&w=2600&q=88");
                 background-size: cover;
-                background-position: center 40%;
+                background-position: center 45%;
             }
             .hero-bg::after {
                 content: "";
@@ -789,7 +790,7 @@
             .hero-bottom {
                 position: relative;
                 z-index: 3;
-                margin-top: 70px;
+                background: var(--plum-deep);
                 border-top: 1px solid rgba(239, 203, 134, 0.18);
             }
             .hero-stats {
@@ -804,14 +805,36 @@
             }
             @media (max-width: 760px) {
                 .hero-inner {
-                    padding: 96px 24px 0;
+                    padding: 76px 22px 0;
+                }
+                .eyebrow {
+                    margin-bottom: 16px;
+                    font-size: 10.5px;
+                    letter-spacing: 2px;
+                }
+                .hero p.sub {
+                    margin-top: 16px;
+                    font-size: 15px;
+                    line-height: 1.6;
+                }
+                .hero-actions {
+                    margin-top: 26px;
+                    gap: 16px;
                 }
                 .hero-bottom {
-                    margin-top: 36px;
+                    padding-bottom: 4px;
                 }
                 .hero-stats {
                     padding: 22px 24px;
                     gap: 24px;
+                }
+            }
+            @media (max-width: 400px) {
+                .hero {
+                    min-height: 560px;
+                }
+                .hero h1 {
+                    font-size: 38px;
                 }
             }
             .stat-num {
@@ -1366,6 +1389,9 @@
             @media (max-width: 560px) {
                 .occ-strip {
                     grid-template-columns: 1fr;
+                }
+                .occ-item {
+                    text-align: center;
                 }
             }
 
@@ -2019,6 +2045,30 @@
             @media (max-width: 560px) {
                 .process {
                     grid-template-columns: 1fr;
+                    text-align: center;
+                }
+                .process-step {
+                    padding-right: 0;
+                }
+                .process-icon-wrap {
+                    margin: 0 auto 24px;
+                }
+                .process-time {
+                    text-align: center;
+                }
+                #process .section-head,
+                #faq .section-head {
+                    text-align: center;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+                #faq .faq-q {
+                    text-align: center;
+                    justify-content: center;
+                    gap: 14px;
+                }
+                #faq .faq-q .plus {
+                    margin-left: 0;
                 }
             }
 
@@ -2416,6 +2466,46 @@
                     align-items: flex-start;
                 }
             }
+            @media (max-width: 640px) {
+                footer {
+                    padding-bottom: 28px;
+                }
+                .footer-banner {
+                    padding: 48px 0 40px;
+                    gap: 22px;
+                }
+                .footer-brand-name {
+                    font-size: 28px;
+                }
+                .footer-contact-chips {
+                    width: 100%;
+                }
+                .footer-chip {
+                    flex: 1 1 auto;
+                    justify-content: center;
+                    padding: 13px 16px;
+                    font-size: 13px;
+                }
+                .footer-top {
+                    flex-direction: column;
+                    gap: 32px;
+                    padding: 40px 0 36px;
+                }
+                .footer-col {
+                    width: 100%;
+                }
+                .footer-fineprint {
+                    font-size: 12px;
+                    line-height: 1.7;
+                    padding: 28px 0;
+                }
+                .footer-bottom {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 8px;
+                    padding-top: 20px;
+                }
+            }
         </style>
     </head>
     <body>
@@ -2528,37 +2618,34 @@
                     <a href="#customize" class="btn-ghost">Plan Your Trip →</a>
                 </div>
             </div>
-            <div class="hero-bottom">
-                <div class="hero-stats">
-                    <div>
-                        <div class="stat-num" data-count="30" data-suffix="+">
-                            0
-                        </div>
-                        <div class="stat-label">Years on the Road</div>
+        </section>
+
+        <div class="hero-bottom">
+            <div class="hero-stats">
+                <div>
+                    <div class="stat-num" data-count="30" data-suffix="+">
+                        0
                     </div>
-                    <div>
-                        <div
-                            class="stat-num"
-                            data-count="40000"
-                            data-suffix="+"
-                        >
-                            0
-                        </div>
-                        <div class="stat-label">Journeys Completed</div>
+                    <div class="stat-label">Years on the Road</div>
+                </div>
+                <div>
+                    <div class="stat-num" data-count="40000" data-suffix="+">
+                        0
                     </div>
-                    <div>
-                        <div class="stat-num">24/7</div>
-                        <div class="stat-label">Dispatch</div>
+                    <div class="stat-label">Journeys Completed</div>
+                </div>
+                <div>
+                    <div class="stat-num">24/7</div>
+                    <div class="stat-label">Dispatch</div>
+                </div>
+                <div>
+                    <div class="stat-num" data-count="100" data-suffix="%">
+                        0
                     </div>
-                    <div>
-                        <div class="stat-num" data-count="100" data-suffix="%">
-                            0
-                        </div>
-                        <div class="stat-label">Fixed Fares</div>
-                    </div>
+                    <div class="stat-label">Fixed Fares</div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <div class="marquee-band">
             <div class="marquee-track">
@@ -3553,7 +3640,7 @@
             </div>
         </section>
 
-        <section>
+        <section id="faq">
             <div class="wrap">
                 <div class="section-head reveal">
                     <div class="section-eyebrow">Questions</div>
