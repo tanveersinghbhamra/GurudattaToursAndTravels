@@ -1,8 +1,4 @@
-/* ============================================================
-   NAVIGATION
-   Header scroll state, mobile menu open/close, FAQ accordion,
-   scroll-reveal for .reveal elements.
-   ============================================================ */
+/* NAVIGATION: header scroll, mobile menu, FAQ accordion, scroll-reveal */
 (function () {
     "use strict";
 

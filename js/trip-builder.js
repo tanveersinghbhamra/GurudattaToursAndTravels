@@ -1,8 +1,4 @@
-/* ============================================================
-   TRIP BUILDER
-   The route/vehicle/passenger customizer and its live
-   WhatsApp enquiry link.
-   ============================================================ */
+/* TRIP BUILDER: route/vehicle/passenger customizer + WhatsApp link */
 (function () {
     "use strict";
 

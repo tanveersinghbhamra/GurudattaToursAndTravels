@@ -1,8 +1,4 @@
-/* ============================================================
-   CAROUSELS
-   Testimonial rotator, pilgrimage image carousel,
-   fleet rail arrows + auto-scroll.
-   ============================================================ */
+/* CAROUSELS: testimonial rotator, pilgrimage carousel, fleet rail */
 (function () {
     "use strict";
 
@@ -99,51 +95,5 @@
 
         go(0);
         restart();
-    })();
-
-    // fleet rail: arrow buttons + gentle auto-scroll
-    (function () {
-        const rail = document.getElementById("fleetRail");
-        if (!rail) return;
-        const prevBtn = document.getElementById("fleetPrev");
-        const nextBtn = document.getElementById("fleetNext");
-        const cardWidth = 320 + 22; // card width + gap
-
-        function atEnd() {
-            return rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 4;
-        }
-        function scrollByCard(dir) {
-            if (dir > 0 && atEnd())
-                rail.scrollTo({ left: 0, behavior: "smooth" });
-            else rail.scrollBy({ left: dir * cardWidth, behavior: "smooth" });
-        }
-
-        prevBtn.addEventListener("click", () => {
-            scrollByCard(-1);
-            pause();
-        });
-        nextBtn.addEventListener("click", () => {
-            scrollByCard(1);
-            pause();
-        });
-
-        let timer;
-        function play() {
-            clearInterval(timer);
-            timer = setInterval(() => scrollByCard(1), 3800);
-        }
-        function pause() {
-            clearInterval(timer);
-            setTimeout(play, 6000);
-        }
-
-        rail.addEventListener("mouseenter", () => clearInterval(timer));
-        rail.addEventListener("mouseleave", play);
-        rail.addEventListener("touchstart", () => clearInterval(timer), {
-            passive: true,
-        });
-        rail.addEventListener("touchend", pause, { passive: true });
-
-        play();
     })();
 })();

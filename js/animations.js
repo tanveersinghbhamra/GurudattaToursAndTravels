@@ -1,8 +1,4 @@
-/* ============================================================
-   MICRO-INTERACTIONS
-   Animated stat counters, cursor-tracked card spotlight,
-   hero ambient glow, magnetic primary buttons.
-   ============================================================ */
+/* MICRO-INTERACTIONS: stat counters, cursor spotlight, hero glow, magnetic buttons */
 (function () {
     "use strict";
 
