@@ -1,0 +1,27 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#241329"/>
+      <stop offset="100%" stop-color="#150A19"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="56" fill="url(#bg)"/>
+
+  <!-- subtle route line motif, matching the hero's dashed-road detail -->
+  <path d="M -20 340 C 100 300, 160 220, 230 210 S 330 170, 400 100 S 500 40, 560 10"
+        fill="none" stroke="#D9A441" stroke-width="2.5" stroke-dasharray="3 10"
+        stroke-linecap="round" opacity="0.55"/>
+
+  <!-- G mark -->
+  <text x="256" y="330" font-family="Georgia, 'Times New Roman', serif" font-style="italic"
+        font-size="248" text-anchor="middle" fill="#EFCB86">G</text>
+
+  <!-- thin gold rule -->
+  <rect x="176" y="368" width="160" height="2" fill="#D9A441" opacity="0.8"/>
+
+  <!-- wordmark -->
+  <text x="256" y="410" font-family="Georgia, 'Times New Roman', serif"
+        font-size="34" text-anchor="middle" fill="#FAF5EA" letter-spacing="1">Gurudatta</text>
+  <text x="256" y="440" font-family="Arial, Helvetica, sans-serif" font-weight="600"
+        font-size="15" text-anchor="middle" fill="#9C4B32" letter-spacing="4">TOUR'S &amp; TRAVELS</text>
+</svg>
