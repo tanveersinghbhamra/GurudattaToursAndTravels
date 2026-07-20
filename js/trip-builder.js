@@ -11,6 +11,10 @@
         );
         const paxCount = document.getElementById("paxCount");
         const travelDate = document.getElementById("travelDate");
+        const travelTime = document.getElementById("travelTime");
+        const useLocationBtn = document.getElementById("useLocationBtn");
+        const locationBtnText = document.getElementById("locationBtnText");
+        const locationNote = document.getElementById("locationNote");
         if (!destInput) return;
 
         const routeField = document.getElementById("routeField");
@@ -27,9 +31,12 @@
             vehicleName: "Swift Dzire",
             tripType: "oneway",
             pax: 2,
+            maxPax: 4,
             date: "",
+            time: "",
             stops: ["", ""],
             dayPlans: ["", "", ""],
+            locationLink: "",
         };
         const tripLabels = {
             oneway: "One-Way",
@@ -108,7 +115,10 @@
                     : pickup + " — itinerary to be filled in";
             } else {
                 const dest = state.destination.trim() || "Your Destination";
-                routeLabel = pickup + " → " + dest;
+                routeLabel =
+                    state.tripType === "round"
+                        ? pickup + " → " + dest + " → " + pickup
+                        : pickup + " → " + dest;
             }
 
             document.getElementById("summaryRoute").textContent = routeLabel;
@@ -123,6 +133,9 @@
                       year: "numeric",
                   })
                 : "To be confirmed";
+            document.getElementById("summaryTime").textContent = state.time
+                ? formatTime(state.time)
+                : "To be confirmed";
 
             let dayByDayText = "";
             if (state.tripType === "multiday") {
@@ -135,35 +148,63 @@
                 dayByDayText = `\nDay-by-day plan:\n${lines}\n`;
             }
 
+            const locationLinkText = state.locationLink
+                ? `\nExact pickup pin: ${state.locationLink}\n`
+                : "";
+
             const waText = encodeURIComponent(
                 `Hello Gurudatta Tour's & Travels, I'd like to request a trip:\n` +
                     `Route: ${routeLabel}\n` +
+                    locationLinkText +
                     `Vehicle: ${state.vehicleName}\n` +
                     `Trip Type: ${tripLabel}\n` +
                     dayByDayText +
                     `Passengers: ${state.pax}\n` +
                     `Date: ${state.date || "To be confirmed"}\n` +
+                    `Pickup Time: ${state.time ? formatTime(state.time) : "To be confirmed"}\n` +
                     `Please share the exact fare for this itinerary.`,
             );
             document.getElementById("waLink").href =
                 `https://wa.me/919011712399?text=${waText}`;
         }
 
+        function formatTime(t) {
+            // t is "HH:MM" from a time input; format as a friendly 12-hour string
+            const [h, m] = t.split(":").map(Number);
+            const period = h >= 12 ? "PM" : "AM";
+            const h12 = h % 12 === 0 ? 12 : h % 12;
+            return `${h12}:${String(m).padStart(2, "0")} ${period}`;
+        }
+
         destInput.addEventListener("input", () => {
             state.destination = destInput.value;
             update();
         });
-        pickupInput.addEventListener("input", update);
 
         vehicleChips.forEach((chip) => {
             chip.addEventListener("click", () => {
                 vehicleChips.forEach((c) => c.classList.remove("active"));
                 chip.classList.add("active");
-                const [name] = chip.dataset.vehicle.split("|");
+                const [name, , , seats] = chip.dataset.vehicle.split("|");
                 state.vehicleName = name;
+                state.maxPax = parseInt(seats, 10) || 12;
+                if (state.pax > state.maxPax) {
+                    state.pax = state.maxPax;
+                    paxCount.textContent = state.pax;
+                }
+                updatePaxButtons();
                 update();
             });
         });
+
+        function updatePaxButtons() {
+            document.getElementById("paxPlus").disabled =
+                state.pax >= state.maxPax;
+            document.getElementById("paxMinus").disabled = state.pax <= 1;
+            const maxNote = document.getElementById("paxMaxNote");
+            if (maxNote)
+                maxNote.textContent = `Max ${state.maxPax} for ${state.vehicleName}`;
+        }
 
         tripTypeBtns.forEach((btn) => {
             btn.addEventListener("click", () => {
@@ -185,18 +226,143 @@
         document.getElementById("paxMinus").addEventListener("click", () => {
             state.pax = Math.max(1, state.pax - 1);
             paxCount.textContent = state.pax;
+            updatePaxButtons();
             update();
         });
         document.getElementById("paxPlus").addEventListener("click", () => {
-            state.pax = Math.min(12, state.pax + 1);
+            state.pax = Math.min(state.maxPax, state.pax + 1);
             paxCount.textContent = state.pax;
+            updatePaxButtons();
             update();
         });
         travelDate.addEventListener("change", () => {
             state.date = travelDate.value;
             update();
         });
+        travelTime.addEventListener("change", () => {
+            state.time = travelTime.value;
+            update();
+        });
 
+        // "Use current location" — fills the pickup field and attaches a map pin
+        // link to the WhatsApp message, since we don't have a paid reverse-geocoding
+        // API to turn coordinates into a street address. A map link the driver can
+        // tap is actually more precise than a guessed address anyway.
+        pickupInput.addEventListener("input", () => {
+            state.locationLink = "";
+            update();
+        }); // typing manually clears any previous pin
+        if (useLocationBtn) {
+            useLocationBtn.addEventListener("click", () => {
+                if (!navigator.geolocation) {
+                    locationNote.textContent =
+                        "Your browser doesn't support location access. Please type your pickup address instead.";
+                    locationNote.className = "location-note error";
+                    return;
+                }
+                useLocationBtn.disabled = true;
+                locationBtnText.textContent = "Locating…";
+                locationNote.textContent = "";
+                locationNote.className = "location-note";
+
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        const { latitude, longitude } = pos.coords;
+                        state.locationLink = `https://maps.google.com/?q=${latitude},${longitude}`;
+                        pickupInput.value = "My Current Location";
+                        useLocationBtn.disabled = false;
+                        locationBtnText.textContent = "Use Current Location";
+                        locationNote.textContent =
+                            "Location added. Your exact pin will be shared with the driver.";
+                        locationNote.className = "location-note success";
+                        update();
+                    },
+                    (err) => {
+                        useLocationBtn.disabled = false;
+                        locationBtnText.textContent = "Use Current Location";
+                        if (err.code === err.PERMISSION_DENIED) {
+                            locationNote.textContent =
+                                "Location permission denied. Please type your pickup address instead.";
+                        } else {
+                            locationNote.textContent =
+                                "Couldn't get your location. Please type your pickup address instead.";
+                        }
+                        locationNote.className = "location-note error";
+                    },
+                    { enableHighAccuracy: true, timeout: 10000 },
+                );
+            });
+        }
+
+        updatePaxButtons();
         update();
+    })();
+
+    // ---------- Customer Feedback ----------
+    (function () {
+        const starRating = document.getElementById("starRating");
+        if (!starRating) return;
+
+        const stars = starRating.querySelectorAll(".star");
+        const nameInput = document.getElementById("feedbackName");
+        const routeInput = document.getElementById("feedbackRoute");
+        const textInput = document.getElementById("feedbackText");
+        const submitBtn = document.getElementById("feedbackSubmit");
+        const note = document.getElementById("feedbackNote");
+        let rating = 0;
+
+        function paintStars(value) {
+            stars.forEach((s) =>
+                s.classList.toggle(
+                    "filled",
+                    parseInt(s.dataset.value, 10) <= value,
+                ),
+            );
+        }
+
+        stars.forEach((star) => {
+            star.addEventListener("click", () => {
+                rating = parseInt(star.dataset.value, 10);
+                paintStars(rating);
+            });
+            star.addEventListener("mouseenter", () =>
+                paintStars(parseInt(star.dataset.value, 10)),
+            );
+        });
+        starRating.addEventListener("mouseleave", () => paintStars(rating));
+
+        submitBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const name = nameInput.value.trim();
+            const route = routeInput.value.trim();
+            const text = textInput.value.trim();
+
+            if (!text) {
+                note.textContent =
+                    "Please add a line about your experience before sending.";
+                note.style.color = "var(--rust)";
+                textInput.focus();
+                return;
+            }
+
+            const stars =
+                rating > 0
+                    ? "★".repeat(rating) +
+                      "☆".repeat(5 - rating) +
+                      ` (${rating}/5)`
+                    : "Not rated";
+            const message =
+                `Hello Gurudatta Tour's & Travels, I'd like to share some feedback:\n` +
+                `Name: ${name || "Not provided"}\n` +
+                (route ? `Trip: ${route}\n` : "") +
+                `Rating: ${stars}\n` +
+                `Feedback: ${text}`;
+
+            submitBtn.href = `https://wa.me/919011712399?text=${encodeURIComponent(message)}`;
+            window.open(submitBtn.href, "_blank", "noopener");
+            note.textContent =
+                "Thanks! Complete sending it in WhatsApp to submit your feedback.";
+            note.style.color = "var(--ink-soft)";
+        });
     })();
 })();

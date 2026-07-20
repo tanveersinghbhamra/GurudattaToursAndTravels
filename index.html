@@ -46,7 +46,7 @@
         <meta property="og:locale" content="en_IN" />
         <meta
             property="og:image"
-            content="https://gurudatta-tours-and-travels.vercel.app/images/og-image.jpg"
+            content="https://gurudatta-tours-and-travels.vercel.app/images/profile.jpg"
         />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -67,7 +67,7 @@
         />
         <meta
             name="twitter:image"
-            content="https://gurudatta-tours-and-travels.vercel.app/images/og-image.jpg"
+            content="https://gurudatta-tours-and-travels.vercel.app/images/profile.jpg"
         />
 
         <meta name="geo.region" content="IN-MH" />
@@ -95,7 +95,7 @@
                 "url": "https://gurudatta-tours-and-travels.vercel.app/",
                 "telephone": "+91-90117-12399",
                 "priceRange": "₹₹",
-                "image": "https://gurudatta-tours-and-travels.vercel.app/images/og-image.jpg",
+                "image": "https://gurudatta-tours-and-travels.vercel.app/images/profile.jpg",
                 "address": {
                     "@type": "PostalAddress",
                     "addressLocality": "Nashik",
@@ -375,10 +375,19 @@
 
         <header id="siteHeader">
             <nav>
-                <div class="logo">
-                    <span class="logo-main">Gurudatta</span
-                    ><span class="logo-sub">Tour's &amp; Travels</span>
-                </div>
+                <a
+                    href="#"
+                    class="logo"
+                    aria-label="Gurudatta Tour's & Travels, home"
+                >
+                    <img src="images/logo-icon.svg" alt="" class="logo-icon" />
+                    <span class="logo-text"
+                        ><span class="logo-main">Gurudatta</span
+                        ><span class="logo-sub"
+                            >Tour's &amp; Travels</span
+                        ></span
+                    >
+                </a>
                 <div class="navlinks" id="navlinks">
                     <div class="navlinks-inner">
                         <a href="#routes">Routes</a>
@@ -460,10 +469,11 @@
 
         <section class="intro-strip">
             <div class="wrap reveal">
-                <div class="section-eyebrow">How We Work</div>
+                <div class="section-eyebrow">About Us</div>
                 <h2>
-                    One fare, fixed before you leave. A driver briefed on your
-                    route before you get in. Every car checked, every time.
+                    Gurudatta Tour's & Travels is a Nashik based cab and tour
+                    company, built around one idea: a trip should feel planned
+                    before it starts, not figured out along the way.
                 </h2>
             </div>
         </section>
@@ -828,7 +838,7 @@
                             <h3>Swift Dzire</h3>
                             <p>
                                 A quiet, capable saloon for couples and
-                                short-haul city transfers.
+                                short haul city transfers.
                             </p>
                             <span class="fleet-tile-cta"
                                 >Reserve this car
@@ -881,7 +891,7 @@
                             <span class="fleet-tile-tag">MPV, 7 Seats</span>
                             <h3>Maruti Ertiga</h3>
                             <p>
-                                A dependable long-distance companion, favoured
+                                A dependable long distance companion, favoured
                                 for hill routes.
                             </p>
                             <span class="fleet-tile-cta"
@@ -937,7 +947,7 @@
                             >
                             <h3>Tempo Traveller</h3>
                             <p>
-                                A full all-seater coach for large groups,
+                                A full all seater coach for large groups,
                                 pilgrimage tours and family functions.
                             </p>
                             <span class="fleet-tile-cta"
@@ -1038,7 +1048,7 @@
                             <span class="fleet-simple-tag">MPV, 7 Seats</span>
                             <h3>Maruti Ertiga</h3>
                             <p>
-                                A dependable long-distance companion, favoured
+                                A dependable long distance companion, favoured
                                 for hill routes.
                             </p>
                             <span class="fleet-simple-cta"
@@ -1078,7 +1088,7 @@
                             >
                             <h3>Tempo Traveller</h3>
                             <p>
-                                A full all-seater coach for large groups,
+                                A full all seater coach for large groups,
                                 pilgrimage tours and family functions.
                             </p>
                             <span class="fleet-simple-cta"
@@ -1136,7 +1146,7 @@
                             outside before my alarm went off.
                         </p>
                         <div class="testi-cite">
-                            Business Traveller, Ozar Airport
+                            Business Traveller, Mumbai Airport
                         </div>
                     </div>
                     <div class="testi-slide">
@@ -1150,6 +1160,123 @@
                         </div>
                     </div>
                     <div class="testi-dots" id="testiDots"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="feedback">
+            <div class="wrap">
+                <div class="section-head center reveal">
+                    <div class="section-eyebrow">Tell Us How It Went</div>
+                    <h2>Share your feedback.</h2>
+                    <p>
+                        Took a trip with us recently? A quick word helps other
+                        travellers, and helps us know what to keep doing.
+                    </p>
+                </div>
+                <div class="feedback-form reveal">
+                    <div class="feedback-row">
+                        <div class="field-group">
+                            <span class="field-label">Your Name</span>
+                            <input
+                                type="text"
+                                id="feedbackName"
+                                class="date-field"
+                                placeholder="e.g. Priya Sharma"
+                            />
+                        </div>
+                        <div class="field-group">
+                            <span class="field-label"
+                                >Route or Trip (optional)</span
+                            >
+                            <input
+                                type="text"
+                                id="feedbackRoute"
+                                class="date-field"
+                                placeholder="e.g. Nashik to Shirdi"
+                            />
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <span class="field-label">Your Rating</span>
+                        <div class="star-rating" id="starRating">
+                            <button
+                                type="button"
+                                class="star"
+                                data-value="1"
+                                aria-label="1 star"
+                            >
+                                ★
+                            </button>
+                            <button
+                                type="button"
+                                class="star"
+                                data-value="2"
+                                aria-label="2 stars"
+                            >
+                                ★
+                            </button>
+                            <button
+                                type="button"
+                                class="star"
+                                data-value="3"
+                                aria-label="3 stars"
+                            >
+                                ★
+                            </button>
+                            <button
+                                type="button"
+                                class="star"
+                                data-value="4"
+                                aria-label="4 stars"
+                            >
+                                ★
+                            </button>
+                            <button
+                                type="button"
+                                class="star"
+                                data-value="5"
+                                aria-label="5 stars"
+                            >
+                                ★
+                            </button>
+                        </div>
+                    </div>
+                    <div class="field-group">
+                        <span class="field-label">Your Feedback</span>
+                        <textarea
+                            id="feedbackText"
+                            class="date-field feedback-textarea"
+                            rows="4"
+                            placeholder="Tell us about your experience — the driver, the car, how the trip went."
+                        ></textarea>
+                    </div>
+                    <a
+                        href="#"
+                        id="feedbackSubmit"
+                        class="btn-wa feedback-submit-btn"
+                        target="_blank"
+                        rel="noopener"
+                    >
+                        <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                        >
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"
+                            />
+                            <path
+                                d="M12.004 2C6.478 2 2.001 6.477 2.001 12c0 1.887.525 3.653 1.437 5.159L2 22l4.983-1.412A9.938 9.938 0 0012.004 22C17.53 22 22 17.523 22 12S17.53 2 12.004 2zm0 18.062a8.03 8.03 0 01-4.34-1.267l-.311-.185-3.098.878.826-3.02-.202-.31A8.027 8.027 0 013.938 12c0-4.451 3.617-8.063 8.066-8.063 4.45 0 8.066 3.612 8.066 8.063 0 4.452-3.617 8.062-8.066 8.062z"
+                            />
+                        </svg>
+                        Send Feedback via WhatsApp
+                    </a>
+                    <p class="feedback-note" id="feedbackNote">
+                        Opens WhatsApp with your feedback filled in — just hit
+                        send.
+                    </p>
                 </div>
             </div>
         </section>
@@ -1174,14 +1301,40 @@
                 <div class="trip-builder reveal">
                     <div class="builder-form">
                         <div class="field-group">
-                            <span class="field-label">Pickup Location</span
-                            ><input
-                                type="text"
-                                id="pickupInput"
-                                list="destList"
-                                class="date-field"
-                                value="Nashik"
-                            />
+                            <span class="field-label">Pickup Location</span>
+                            <div class="pickup-row">
+                                <input
+                                    type="text"
+                                    id="pickupInput"
+                                    list="destList"
+                                    class="date-field"
+                                    value="Nashik"
+                                />
+                                <button
+                                    type="button"
+                                    id="useLocationBtn"
+                                    class="location-btn"
+                                    aria-label="Use my current location"
+                                >
+                                    <svg
+                                        width="16"
+                                        height="16"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2"
+                                    >
+                                        <circle cx="12" cy="12" r="3" />
+                                        <path
+                                            d="M12 2v3M12 19v3M2 12h3M19 12h3"
+                                        />
+                                    </svg>
+                                    <span id="locationBtnText"
+                                        >Use Current Location</span
+                                    >
+                                </button>
+                            </div>
+                            <div class="location-note" id="locationNote"></div>
                         </div>
                         <div class="field-group">
                             <span class="field-label">Trip Type</span>
@@ -1322,10 +1475,12 @@
                                 </div>
                                 <div
                                     class="vehicle-chip"
-                                    data-vehicle="Tempo Traveller|0|0|17"
+                                    data-vehicle="Tempo Traveller|0|0|26"
                                 >
                                     <div class="vname">Tempo Traveller</div>
-                                    <div class="vseats">All Seater, Groups</div>
+                                    <div class="vseats">
+                                        Up to 26 Seats, Groups
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1336,14 +1491,27 @@
                                 ><span id="paxCount">2</span
                                 ><button type="button" id="paxPlus">+</button>
                             </div>
+                            <div class="pax-max-note" id="paxMaxNote">
+                                Max 4 for Swift Dzire
+                            </div>
                         </div>
-                        <div class="field-group">
-                            <span class="field-label">Travel Date</span
-                            ><input
-                                type="date"
-                                class="date-field"
-                                id="travelDate"
-                            />
+                        <div class="field-group-row">
+                            <div class="field-group">
+                                <span class="field-label">Travel Date</span
+                                ><input
+                                    type="date"
+                                    class="date-field"
+                                    id="travelDate"
+                                />
+                            </div>
+                            <div class="field-group">
+                                <span class="field-label">Pickup Time</span
+                                ><input
+                                    type="time"
+                                    class="date-field"
+                                    id="travelTime"
+                                />
+                            </div>
                         </div>
                     </div>
                     <div class="builder-summary">
@@ -1366,6 +1534,10 @@
                         <div class="summary-row">
                             <span>Date</span
                             ><span id="summaryDate">To be confirmed</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Time</span
+                            ><span id="summaryTime">To be confirmed</span>
                         </div>
                         <div class="fare-box">
                             <div class="s-label">Next Step</div>
@@ -1734,6 +1906,11 @@
         <footer>
             <div class="wrap footer-main">
                 <div class="footer-brand">
+                    <img
+                        src="images/mainLogo-web.jpg"
+                        alt="Gurudatta Tour's &amp; Travels"
+                        class="footer-logo-img"
+                    />
                     <div class="footer-logo">
                         Gurudatta <em>Tour's &amp; Travels</em>
                     </div>
@@ -1785,8 +1962,8 @@
                 </p>
                 <div class="footer-bottom">
                     <span
-                        >&copy; 2026 Gurudatta Tour's & Travels. Dummy content
-                        for design review.</span
+                        >&copy; 2026 Gurudatta Tour's & Travels
+                    </span
                     ><span>Built by Rejoice Digital</span>
                 </div>
             </div>
