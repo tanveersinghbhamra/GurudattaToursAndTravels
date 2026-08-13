@@ -493,6 +493,16 @@ header.nav-open .navtoggle span {
     opacity: 0;
     animation: fadeUp 1s ease forwards 0.25s;
 }
+
+.hero-subtitle {
+  display: block;
+  font-size: 0.35em;
+  font-weight: 400;
+  opacity: 0.75;
+  margin-top: 0.4em;
+  letter-spacing: 0.01em;
+}
+
 .hero-actions {
     margin-top: 40px;
     display: flex;

@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.gurudattatoursandtravels.com/sitemap.xml
+Sitemap: https://gurudattatoursandtravels.com/sitemap.xml
