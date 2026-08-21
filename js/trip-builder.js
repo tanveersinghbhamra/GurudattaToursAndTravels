@@ -165,7 +165,7 @@
                     `Please share the exact fare for this itinerary.`,
             );
             document.getElementById("waLink").href =
-                `https://wa.me/919011712399?text=${waText}`;
+                `https://wa.me/918485098277?text=${waText}`;
         }
 
         function formatTime(t) {
@@ -358,7 +358,7 @@
                 `Rating: ${stars}\n` +
                 `Feedback: ${text}`;
 
-            submitBtn.href = `https://wa.me/919011712399?text=${encodeURIComponent(message)}`;
+            submitBtn.href = `https://wa.me/918485098277?text=${encodeURIComponent(message)}`;
             window.open(submitBtn.href, "_blank", "noopener");
             note.textContent =
                 "Thanks! Complete sending it in WhatsApp to submit your feedback.";
